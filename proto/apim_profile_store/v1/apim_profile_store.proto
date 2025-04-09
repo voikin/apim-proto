@@ -1,13 +1,13 @@
 syntax = "proto3";
 
-package v1.apim_profile_store;
+package apim_profile_store.v1;
 
-option go_package = "github.com/voikin/apim-proto/gen/go/v1/apim_profile_store;apim_profile_store";
+option go_package = "github.com/voikin/apim-proto/gen/go/apim_profile_store/v1;apim_profile_store";
 
 import "google/api/annotations.proto";
 import "buf/validate/validate.proto";
 import "protoc-gen-openapiv2/options/annotations.proto";
-import "v1/shared/models.proto";
+import "shared/v1/models.proto";
 
 option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
   info: {
@@ -17,7 +17,7 @@ option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
 };
 
 service ProfileStoreService {
-  // v1.shared.Application CRUDL
+  // shared.v1.Application CRUDL
 
   rpc CreateApplication(CreateApplicationRequest) returns (CreateApplicationResponse) {
     option (google.api.http) = {
@@ -141,7 +141,7 @@ message CreateApplicationRequest {
   }
   
   message CreateApplicationResponse {
-    v1.shared.Application application = 1;
+    shared.v1.Application application = 1;
   }
   
   message GetApplicationRequest {
@@ -152,7 +152,7 @@ message CreateApplicationRequest {
   }
   
   message GetApplicationResponse {
-    v1.shared.Application application = 1;
+    shared.v1.Application application = 1;
   }
   
   message UpdateApplicationRequest {
@@ -167,7 +167,7 @@ message CreateApplicationRequest {
   }
   
   message UpdateApplicationResponse {
-    v1.shared.Application application = 1;
+    shared.v1.Application application = 1;
   }
   
   message DeleteApplicationRequest {
@@ -182,7 +182,7 @@ message CreateApplicationRequest {
   message ListApplicationsRequest {}
   
   message ListApplicationsResponse {
-    repeated v1.shared.Application applications = 1;
+    repeated shared.v1.Application applications = 1;
   }
   
   message AddProfileRequest {
@@ -190,11 +190,11 @@ message CreateApplicationRequest {
       (buf.validate.field).required = true,
       (buf.validate.field).string.uuid = true
     ];
-    v1.shared.ProfileGraph graph = 2;
+    shared.v1.ProfileGraph graph = 2;
   }
   
   message AddProfileResponse {
-    v1.shared.ApplicationProfile profile = 1;
+    shared.v1.ApplicationProfile profile = 1;
   }
   
   message GetProfileByIDRequest {
@@ -205,7 +205,7 @@ message CreateApplicationRequest {
   }
   
   message GetProfileByIDResponse {
-    v1.shared.ApplicationProfile profile = 1;
+    shared.v1.ApplicationProfile profile = 1;
   }
   
   message GetLatestProfileRequest {
@@ -216,7 +216,7 @@ message CreateApplicationRequest {
   }
   
   message GetLatestProfileResponse {
-    v1.shared.ApplicationProfile profile = 1;
+    shared.v1.ApplicationProfile profile = 1;
   }
   
   message GetProfileByVersionRequest {
@@ -230,7 +230,7 @@ message CreateApplicationRequest {
   }
   
   message GetProfileByVersionResponse {
-    v1.shared.ApplicationProfile profile = 1;
+    shared.v1.ApplicationProfile profile = 1;
   }
   
   message DeleteProfileRequest {
@@ -250,12 +250,12 @@ message CreateApplicationRequest {
   }
   
   message ListProfilesByApplicationResponse {
-    repeated v1.shared.ApplicationProfile profiles = 1;
+    repeated shared.v1.ApplicationProfile profiles = 1;
   }
   
   message ListLatestProfilesRequest {}
   
   message ListLatestProfilesResponse {
-    repeated v1.shared.ApplicationProfile profiles = 1;
+    repeated shared.v1.ApplicationProfile profiles = 1;
   }
   

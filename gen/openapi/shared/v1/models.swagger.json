@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "v1/shared/models.proto",
+    "title": "shared/v1/models.proto",
     "version": "version not set"
   },
   "consumes": [
