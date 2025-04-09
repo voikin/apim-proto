@@ -432,6 +432,13 @@
         },
         "pathSegmentId": {
           "type": "string"
+        },
+        "queryParameters": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1Parameter"
+          }
         }
       }
     },
@@ -607,7 +614,7 @@
         }
       }
     },
-    "v1PathSegment": {
+    "v1Parameter": {
       "type": "object",
       "properties": {
         "id": {
@@ -616,8 +623,42 @@
         "name": {
           "type": "string"
         },
-        "isParam": {
-          "type": "boolean"
+        "type": {
+          "$ref": "#/definitions/v1ParameterType"
+        },
+        "example": {
+          "type": "string"
+        }
+      }
+    },
+    "v1ParameterType": {
+      "type": "string",
+      "enum": [
+        "PARAMETER_TYPE_UNSPECIFIED",
+        "PARAMETER_TYPE_INTEGER",
+        "PARAMETER_TYPE_UUID"
+      ],
+      "default": "PARAMETER_TYPE_UNSPECIFIED"
+    },
+    "v1PathSegment": {
+      "type": "object",
+      "properties": {
+        "static": {
+          "$ref": "#/definitions/v1StaticSegment"
+        },
+        "param": {
+          "$ref": "#/definitions/v1Parameter"
+        }
+      }
+    },
+    "v1StaticSegment": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
         }
       }
     },
