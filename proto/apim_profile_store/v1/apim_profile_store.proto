@@ -11,252 +11,242 @@ import "shared/v1/application.proto";
 import "shared/v1/api_graph.proto";
 
 option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
-  info: {
-    title: "Profile Store API"
-    version: "0.0.1"
-  }
+  info : {title : "Profile Store API" version : "0.0.1"}
 };
 
 service ProfileStoreService {
   // shared.v1.Application CRUDL
 
-  rpc CreateApplication(CreateApplicationRequest) returns (CreateApplicationResponse) {
+  rpc CreateApplication(CreateApplicationRequest)
+      returns (CreateApplicationResponse) {
     option (google.api.http) = {
       post : "/api/v1/applications"
       body : "*"
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      tags: "Applications";
-    };
-  }
+      tags : "Applications";
+  };
+}
 
-  rpc GetApplication(GetApplicationRequest) returns (GetApplicationResponse) {
-    option (google.api.http) = {
-      get : "/api/v1/applications/{id}"
-    };
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      tags: "Applications";
-    };
-  }
+rpc GetApplication(GetApplicationRequest) returns (GetApplicationResponse) {
+  option (google.api.http) = {
+    get : "/api/v1/applications/{id}"
+  };
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    tags : "Applications";
+};
+}
 
-  rpc UpdateApplication(UpdateApplicationRequest) returns (UpdateApplicationResponse) {
-    option (google.api.http) = {
-      put : "/api/v1/applications/{id}"
-      body : "*"
-    };
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      tags: "Applications";
-    };
-  }
+rpc UpdateApplication(UpdateApplicationRequest)
+    returns (UpdateApplicationResponse) {
+  option (google.api.http) = {
+    put : "/api/v1/applications/{id}"
+    body : "*"
+  };
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    tags : "Applications";
+};
+}
 
-  rpc DeleteApplication(DeleteApplicationRequest) returns (DeleteApplicationResponse) {
-    option (google.api.http) = {
-      delete : "/api/v1/applications/{id}"
-    };
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      tags: "Applications";
-    };
-  }
+rpc DeleteApplication(DeleteApplicationRequest)
+    returns (DeleteApplicationResponse) {
+  option (google.api.http) = {
+    delete : "/api/v1/applications/{id}"
+  };
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    tags : "Applications";
+};
+}
 
-  rpc ListApplications(ListApplicationsRequest) returns (ListApplicationsResponse) {
-    option (google.api.http) = {
-      get : "/api/v1/applications"
-    };
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      tags: "Applications";
-    };
-  }
+rpc ListApplications(ListApplicationsRequest)
+    returns (ListApplicationsResponse) {
+  option (google.api.http) = {
+    get : "/api/v1/applications"
+  };
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    tags : "Applications";
+};
+}
 
-  // Profile operations
+// Profile operations
 
-  rpc AddProfile(AddProfileRequest) returns (AddProfileResponse) {
-    option (google.api.http) = {
-      post : "/api/v1/applications/{application_id}/profiles"
-      body : "*"
-    };
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      tags: "Profiles";
-    };
-  }
+rpc AddProfile(AddProfileRequest) returns (AddProfileResponse) {
+  option (google.api.http) = {
+    post : "/api/v1/applications/{application_id}/profiles"
+    body : "*"
+  };
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    tags : "Profiles";
+};
+}
 
-  rpc GetProfileByID(GetProfileByIDRequest) returns (GetProfileByIDResponse) {
-    option (google.api.http) = {
-      get : "/api/v1/profiles/{id}"
-    };
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      tags: "Profiles";
-    };
-  }
+rpc GetProfileByID(GetProfileByIDRequest) returns (GetProfileByIDResponse) {
+  option (google.api.http) = {
+    get : "/api/v1/profiles/{id}"
+  };
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    tags : "Profiles";
+};
+}
 
-  rpc GetLatestProfile(GetLatestProfileRequest) returns (GetLatestProfileResponse) {
-    option (google.api.http) = {
-      get : "/api/v1/applications/{application_id}/profiles/latest"
-    };
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      tags: "Profiles";
-    };
-  }
+rpc GetLatestProfile(GetLatestProfileRequest)
+    returns (GetLatestProfileResponse) {
+  option (google.api.http) = {
+    get : "/api/v1/applications/{application_id}/profiles/latest"
+  };
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    tags : "Profiles";
+};
+}
 
-  rpc GetProfileByVersion(GetProfileByVersionRequest) returns (GetProfileByVersionResponse) {
-    option (google.api.http) = {
-      get : "/api/v1/applications/{application_id}/profiles/{version}"
-    };
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      tags: "Profiles";
-    };
-  }
+rpc GetProfileByVersion(GetProfileByVersionRequest)
+    returns (GetProfileByVersionResponse) {
+  option (google.api.http) = {
+    get : "/api/v1/applications/{application_id}/profiles/{version}"
+  };
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    tags : "Profiles";
+};
+}
 
-  rpc DeleteProfile(DeleteProfileRequest) returns (DeleteProfileResponse) {
-    option (google.api.http) = {
-      delete : "/api/v1/profiles/{id}"
-    };
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      tags: "Profiles";
-    };
-  }
+rpc DeleteProfile(DeleteProfileRequest) returns (DeleteProfileResponse) {
+  option (google.api.http) = {
+    delete : "/api/v1/profiles/{id}"
+  };
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    tags : "Profiles";
+};
+}
 
-  rpc ListProfilesByApplication(ListProfilesByApplicationRequest) returns (ListProfilesByApplicationResponse) {
-    option (google.api.http) = {
-      get : "/api/v1/applications/{application_id}/profiles"
-    };
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      tags: "Profiles";
-    };
-  }
+rpc ListProfilesByApplication(ListProfilesByApplicationRequest)
+    returns (ListProfilesByApplicationResponse) {
+  option (google.api.http) = {
+    get : "/api/v1/applications/{application_id}/profiles"
+  };
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    tags : "Profiles";
+};
+}
 
-  rpc ListLatestProfiles(ListLatestProfilesRequest) returns (ListLatestProfilesResponse) {
-    option (google.api.http) = {
-      get : "/api/v1/profiles/latest"
-    };
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      tags: "Profiles";
-    };
-  }
+rpc ListLatestProfiles(ListLatestProfilesRequest)
+    returns (ListLatestProfilesResponse) {
+  option (google.api.http) = {
+    get : "/api/v1/profiles/latest"
+  };
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    tags : "Profiles";
+};
+}
 }
 
 message CreateApplicationRequest {
-    string name = 1 [
-      (buf.validate.field).required = true,
-      (buf.validate.field).string.min_len = 1
-    ];
-  }
-  
-  message CreateApplicationResponse {
-    shared.v1.Application application = 1;
-  }
-  
-  message GetApplicationRequest {
-    string id = 1 [
-      (buf.validate.field).required = true,
-      (buf.validate.field).string.uuid = true
-    ];
-  }
-  
-  message GetApplicationResponse {
-    shared.v1.Application application = 1;
-  }
-  
-  message UpdateApplicationRequest {
-    string id = 1 [
-      (buf.validate.field).required = true,
-      (buf.validate.field).string.uuid = true
-    ];
-    string name = 2 [
-      (buf.validate.field).required = true,
-      (buf.validate.field).string.min_len = 1
-    ];
-  }
-  
-  message UpdateApplicationResponse {
-    shared.v1.Application application = 1;
-  }
-  
-  message DeleteApplicationRequest {
-    string id = 1 [
-      (buf.validate.field).required = true,
-      (buf.validate.field).string.uuid = true
-    ];
-  }
-  
-  message DeleteApplicationResponse {}
-  
-  message ListApplicationsRequest {}
-  
-  message ListApplicationsResponse {
-    repeated shared.v1.Application applications = 1;
-  }
-  
-  message AddProfileRequest {
-    string application_id = 1 [
-      (buf.validate.field).required = true,
-      (buf.validate.field).string.uuid = true
-    ];
-    shared.v1.APIGraph api_graph = 2;
-  }
-  
-  message AddProfileResponse {
-    shared.v1.ApplicationProfile profile = 1;
-  }
-  
-  message GetProfileByIDRequest {
-    string id = 1 [
-      (buf.validate.field).required = true,
-      (buf.validate.field).string.uuid = true
-    ];
-  }
-  
-  message GetProfileByIDResponse {
-    shared.v1.ApplicationProfile profile = 1;
-  }
-  
-  message GetLatestProfileRequest {
-    string application_id = 1 [
-      (buf.validate.field).required = true,
-      (buf.validate.field).string.uuid = true
-    ];
-  }
-  
-  message GetLatestProfileResponse {
-    shared.v1.ApplicationProfile profile = 1;
-  }
-  
-  message GetProfileByVersionRequest {
-    string application_id = 1 [
-      (buf.validate.field).required = true,
-      (buf.validate.field).string.uuid = true
-    ];
-    uint32 version = 2 [
-      (buf.validate.field).uint32.gt = 0
-    ];
-  }
-  
-  message GetProfileByVersionResponse {
-    shared.v1.ApplicationProfile profile = 1;
-  }
-  
-  message DeleteProfileRequest {
-    string id = 1 [
-      (buf.validate.field).required = true,
-      (buf.validate.field).string.uuid = true
-    ];
-  }
-  
-  message DeleteProfileResponse {}
-  
-  message ListProfilesByApplicationRequest {
-    string application_id = 1 [
-      (buf.validate.field).required = true,
-      (buf.validate.field).string.uuid = true
-    ];
-  }
-  
-  message ListProfilesByApplicationResponse {
-    repeated shared.v1.ApplicationProfile profiles = 1;
-  }
-  
-  message ListLatestProfilesRequest {}
-  
-  message ListLatestProfilesResponse {
-    repeated shared.v1.ApplicationProfile profiles = 1;
-  }
-  
+  string name = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.min_len = 1
+  ];
+}
+
+message CreateApplicationResponse { shared.v1.Application application = 1; }
+
+message GetApplicationRequest {
+  string id = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.uuid = true
+  ];
+}
+
+message GetApplicationResponse { shared.v1.Application application = 1; }
+
+message UpdateApplicationRequest {
+  string id = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.uuid = true
+  ];
+  string name = 2 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.min_len = 1
+  ];
+}
+
+message UpdateApplicationResponse { shared.v1.Application application = 1; }
+
+message DeleteApplicationRequest {
+  string id = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.uuid = true
+  ];
+}
+
+message DeleteApplicationResponse {}
+
+message ListApplicationsRequest {}
+
+message ListApplicationsResponse {
+  repeated shared.v1.Application applications = 1;
+}
+
+message AddProfileRequest {
+  string application_id = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.uuid = true
+  ];
+  shared.v1.APIGraph api_graph = 2;
+}
+
+message AddProfileResponse { shared.v1.ApplicationProfile profile = 1; }
+
+message GetProfileByIDRequest {
+  string id = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.uuid = true
+  ];
+}
+
+message GetProfileByIDResponse { shared.v1.ApplicationProfile profile = 1; }
+
+message GetLatestProfileRequest {
+  string application_id = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.uuid = true
+  ];
+}
+
+message GetLatestProfileResponse { shared.v1.ApplicationProfile profile = 1; }
+
+message GetProfileByVersionRequest {
+  string application_id = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.uuid = true
+  ];
+  uint32 version = 2 [ (buf.validate.field).uint32.gt = 0 ];
+}
+
+message GetProfileByVersionResponse {
+  shared.v1.ApplicationProfile profile = 1;
+}
+
+message DeleteProfileRequest {
+  string id = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.uuid = true
+  ];
+}
+
+message DeleteProfileResponse {}
+
+message ListProfilesByApplicationRequest {
+  string application_id = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.uuid = true
+  ];
+}
+
+message ListProfilesByApplicationResponse {
+  repeated shared.v1.ApplicationProfile profiles = 1;
+}
+
+message ListLatestProfilesRequest {}
+
+message ListLatestProfilesResponse {
+  repeated shared.v1.ApplicationProfile profiles = 1;
+}

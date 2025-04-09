@@ -1,0 +1,204 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "HAR profiler API",
+    "version": "0.0.1"
+  },
+  "tags": [
+    {
+      "name": "HARProfilerService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/build-api-graph": {
+      "post": {
+        "operationId": "HARProfilerService_BuildAPIGraph",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1BuildAPIGraphResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1BuildAPIGraphRequest"
+            }
+          }
+        ],
+        "tags": [
+          "API graph"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "sharedv1Operation": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "method": {
+          "type": "string"
+        },
+        "pathSegmentId": {
+          "type": "string"
+        },
+        "queryParameters": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1Parameter"
+          }
+        }
+      }
+    },
+    "v1APIGraph": {
+      "type": "object",
+      "properties": {
+        "segments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1PathSegment"
+          }
+        },
+        "edges": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1Edge"
+          }
+        },
+        "operations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sharedv1Operation"
+          }
+        }
+      }
+    },
+    "v1BuildAPIGraphRequest": {
+      "type": "object",
+      "properties": {
+        "harJson": {
+          "type": "string"
+        }
+      }
+    },
+    "v1BuildAPIGraphResponse": {
+      "type": "object",
+      "properties": {
+        "graph": {
+          "$ref": "#/definitions/v1APIGraph"
+        }
+      }
+    },
+    "v1Edge": {
+      "type": "object",
+      "properties": {
+        "from": {
+          "type": "string"
+        },
+        "to": {
+          "type": "string"
+        }
+      }
+    },
+    "v1Parameter": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/v1ParameterType"
+        },
+        "example": {
+          "type": "string"
+        }
+      }
+    },
+    "v1ParameterType": {
+      "type": "string",
+      "enum": [
+        "PARAMETER_TYPE_UNSPECIFIED",
+        "PARAMETER_TYPE_INTEGER",
+        "PARAMETER_TYPE_UUID"
+      ],
+      "default": "PARAMETER_TYPE_UNSPECIFIED"
+    },
+    "v1PathSegment": {
+      "type": "object",
+      "properties": {
+        "static": {
+          "$ref": "#/definitions/v1StaticSegment"
+        },
+        "param": {
+          "$ref": "#/definitions/v1Parameter"
+        }
+      }
+    },
+    "v1StaticSegment": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

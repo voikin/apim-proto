@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package apim_profile_store.v1;
+
+option go_package = "github.com/voikin/apim-proto/gen/go/apim_har_profiler/v1;apim_har_profiler";
+
+import "google/api/annotations.proto";
+import "buf/validate/validate.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+import "shared/v1/api_graph.proto";
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  info : {title : "HAR profiler API" version : "0.0.1"}
+};
+
+service HARProfilerService {
+  rpc BuildAPIGraph(BuildAPIGraphRequest) returns (BuildAPIGraphResponse) {
+    option (google.api.http) = {
+      post : "/api/v1/build-api-graph"
+      body : "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      tags : "API graph";
+  };
+}
+}
+
+message BuildAPIGraphRequest {
+  string har_json = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.min_len = 1
+  ];
+}
+
+message BuildAPIGraphResponse { shared.v1.APIGraph graph = 1; }
