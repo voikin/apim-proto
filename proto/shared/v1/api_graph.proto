@@ -5,9 +5,28 @@ package shared.v1;
 option go_package = "github.com/voikin/apim-proto/gen/go/shared/v1;shared";
 
 message PathSegment {
+  oneof segment {
+    StaticSegment static = 1;
+    Parameter param = 2;
+  }
+}
+
+message StaticSegment {
   string id = 1;
   string name = 2;
-  bool is_param = 3;
+}
+
+message Parameter {
+  string id = 1;
+  string name = 2;
+  ParameterType type = 3;
+  string example = 4;
+}
+
+enum ParameterType {
+  PARAMETER_TYPE_UNSPECIFIED = 0;
+  PARAMETER_TYPE_INTEGER = 1;
+  PARAMETER_TYPE_UUID = 2;
 }
 
 message Edge {
@@ -18,7 +37,8 @@ message Edge {
 message Operation {
   string id = 1;
   string method = 2;
-  string path_segment_id = 4;
+  string path_segment_id = 3;
+  repeated Parameter query_parameters = 4;
 }
 
 message APIGraph {
