@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             (unknown)
-// source: v1/apim_profile_store/apim_profile_store.proto
+// source: apim_profile_store/v1/apim_profile_store.proto
 
 package apim_profile_store
 
@@ -19,18 +19,18 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ProfileStoreService_CreateApplication_FullMethodName         = "/v1.apim_profile_store.ProfileStoreService/CreateApplication"
-	ProfileStoreService_GetApplication_FullMethodName            = "/v1.apim_profile_store.ProfileStoreService/GetApplication"
-	ProfileStoreService_UpdateApplication_FullMethodName         = "/v1.apim_profile_store.ProfileStoreService/UpdateApplication"
-	ProfileStoreService_DeleteApplication_FullMethodName         = "/v1.apim_profile_store.ProfileStoreService/DeleteApplication"
-	ProfileStoreService_ListApplications_FullMethodName          = "/v1.apim_profile_store.ProfileStoreService/ListApplications"
-	ProfileStoreService_AddProfile_FullMethodName                = "/v1.apim_profile_store.ProfileStoreService/AddProfile"
-	ProfileStoreService_GetProfileByID_FullMethodName            = "/v1.apim_profile_store.ProfileStoreService/GetProfileByID"
-	ProfileStoreService_GetLatestProfile_FullMethodName          = "/v1.apim_profile_store.ProfileStoreService/GetLatestProfile"
-	ProfileStoreService_GetProfileByVersion_FullMethodName       = "/v1.apim_profile_store.ProfileStoreService/GetProfileByVersion"
-	ProfileStoreService_DeleteProfile_FullMethodName             = "/v1.apim_profile_store.ProfileStoreService/DeleteProfile"
-	ProfileStoreService_ListProfilesByApplication_FullMethodName = "/v1.apim_profile_store.ProfileStoreService/ListProfilesByApplication"
-	ProfileStoreService_ListLatestProfiles_FullMethodName        = "/v1.apim_profile_store.ProfileStoreService/ListLatestProfiles"
+	ProfileStoreService_CreateApplication_FullMethodName         = "/apim_profile_store.v1.ProfileStoreService/CreateApplication"
+	ProfileStoreService_GetApplication_FullMethodName            = "/apim_profile_store.v1.ProfileStoreService/GetApplication"
+	ProfileStoreService_UpdateApplication_FullMethodName         = "/apim_profile_store.v1.ProfileStoreService/UpdateApplication"
+	ProfileStoreService_DeleteApplication_FullMethodName         = "/apim_profile_store.v1.ProfileStoreService/DeleteApplication"
+	ProfileStoreService_ListApplications_FullMethodName          = "/apim_profile_store.v1.ProfileStoreService/ListApplications"
+	ProfileStoreService_AddProfile_FullMethodName                = "/apim_profile_store.v1.ProfileStoreService/AddProfile"
+	ProfileStoreService_GetProfileByID_FullMethodName            = "/apim_profile_store.v1.ProfileStoreService/GetProfileByID"
+	ProfileStoreService_GetLatestProfile_FullMethodName          = "/apim_profile_store.v1.ProfileStoreService/GetLatestProfile"
+	ProfileStoreService_GetProfileByVersion_FullMethodName       = "/apim_profile_store.v1.ProfileStoreService/GetProfileByVersion"
+	ProfileStoreService_DeleteProfile_FullMethodName             = "/apim_profile_store.v1.ProfileStoreService/DeleteProfile"
+	ProfileStoreService_ListProfilesByApplication_FullMethodName = "/apim_profile_store.v1.ProfileStoreService/ListProfilesByApplication"
+	ProfileStoreService_ListLatestProfiles_FullMethodName        = "/apim_profile_store.v1.ProfileStoreService/ListLatestProfiles"
 )
 
 // ProfileStoreServiceClient is the client API for ProfileStoreService service.
@@ -482,7 +482,7 @@ func _ProfileStoreService_ListLatestProfiles_Handler(srv interface{}, ctx contex
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var ProfileStoreService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "v1.apim_profile_store.ProfileStoreService",
+	ServiceName: "apim_profile_store.v1.ProfileStoreService",
 	HandlerType: (*ProfileStoreServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -535,5 +535,5 @@ var ProfileStoreService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "v1/apim_profile_store/apim_profile_store.proto",
+	Metadata: "apim_profile_store/v1/apim_profile_store.proto",
 }

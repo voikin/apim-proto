@@ -23,7 +23,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/apim_profile_storeListApplicationsResponse"
+              "$ref": "#/definitions/v1ListApplicationsResponse"
             }
           },
           "default": {
@@ -43,7 +43,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/apim_profile_storeCreateApplicationResponse"
+              "$ref": "#/definitions/v1CreateApplicationResponse"
             }
           },
           "default": {
@@ -59,7 +59,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/apim_profile_storeCreateApplicationRequest"
+              "$ref": "#/definitions/v1CreateApplicationRequest"
             }
           }
         ],
@@ -75,7 +75,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/apim_profile_storeListProfilesByApplicationResponse"
+              "$ref": "#/definitions/v1ListProfilesByApplicationResponse"
             }
           },
           "default": {
@@ -103,7 +103,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/apim_profile_storeAddProfileResponse"
+              "$ref": "#/definitions/v1AddProfileResponse"
             }
           },
           "default": {
@@ -141,7 +141,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/apim_profile_storeGetLatestProfileResponse"
+              "$ref": "#/definitions/v1GetLatestProfileResponse"
             }
           },
           "default": {
@@ -171,7 +171,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/apim_profile_storeGetProfileByVersionResponse"
+              "$ref": "#/definitions/v1GetProfileByVersionResponse"
             }
           },
           "default": {
@@ -208,7 +208,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/apim_profile_storeGetApplicationResponse"
+              "$ref": "#/definitions/v1GetApplicationResponse"
             }
           },
           "default": {
@@ -236,7 +236,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/apim_profile_storeDeleteApplicationResponse"
+              "$ref": "#/definitions/v1DeleteApplicationResponse"
             }
           },
           "default": {
@@ -264,7 +264,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/apim_profile_storeUpdateApplicationResponse"
+              "$ref": "#/definitions/v1UpdateApplicationResponse"
             }
           },
           "default": {
@@ -302,7 +302,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/apim_profile_storeListLatestProfilesResponse"
+              "$ref": "#/definitions/v1ListLatestProfilesResponse"
             }
           },
           "default": {
@@ -324,7 +324,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/apim_profile_storeGetProfileByIDResponse"
+              "$ref": "#/definitions/v1GetProfileByIDResponse"
             }
           },
           "default": {
@@ -352,7 +352,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/apim_profile_storeDeleteProfileResponse"
+              "$ref": "#/definitions/v1DeleteProfileResponse"
             }
           },
           "default": {
@@ -380,8 +380,8 @@
     "ProfileStoreServiceAddProfileBody": {
       "type": "object",
       "properties": {
-        "graph": {
-          "$ref": "#/definitions/sharedProfileGraph"
+        "apiGraph": {
+          "$ref": "#/definitions/v1APIGraph"
         }
       }
     },
@@ -390,112 +390,6 @@
       "properties": {
         "name": {
           "type": "string"
-        }
-      }
-    },
-    "apim_profile_storeAddProfileResponse": {
-      "type": "object",
-      "properties": {
-        "profile": {
-          "$ref": "#/definitions/sharedApplicationProfile"
-        }
-      }
-    },
-    "apim_profile_storeCreateApplicationRequest": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        }
-      }
-    },
-    "apim_profile_storeCreateApplicationResponse": {
-      "type": "object",
-      "properties": {
-        "application": {
-          "$ref": "#/definitions/sharedApplication"
-        }
-      }
-    },
-    "apim_profile_storeDeleteApplicationResponse": {
-      "type": "object"
-    },
-    "apim_profile_storeDeleteProfileResponse": {
-      "type": "object"
-    },
-    "apim_profile_storeGetApplicationResponse": {
-      "type": "object",
-      "properties": {
-        "application": {
-          "$ref": "#/definitions/sharedApplication"
-        }
-      }
-    },
-    "apim_profile_storeGetLatestProfileResponse": {
-      "type": "object",
-      "properties": {
-        "profile": {
-          "$ref": "#/definitions/sharedApplicationProfile"
-        }
-      }
-    },
-    "apim_profile_storeGetProfileByIDResponse": {
-      "type": "object",
-      "properties": {
-        "profile": {
-          "$ref": "#/definitions/sharedApplicationProfile"
-        }
-      }
-    },
-    "apim_profile_storeGetProfileByVersionResponse": {
-      "type": "object",
-      "properties": {
-        "profile": {
-          "$ref": "#/definitions/sharedApplicationProfile"
-        }
-      }
-    },
-    "apim_profile_storeListApplicationsResponse": {
-      "type": "object",
-      "properties": {
-        "applications": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/sharedApplication"
-          }
-        }
-      }
-    },
-    "apim_profile_storeListLatestProfilesResponse": {
-      "type": "object",
-      "properties": {
-        "profiles": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/sharedApplicationProfile"
-          }
-        }
-      }
-    },
-    "apim_profile_storeListProfilesByApplicationResponse": {
-      "type": "object",
-      "properties": {
-        "profiles": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/sharedApplicationProfile"
-          }
-        }
-      }
-    },
-    "apim_profile_storeUpdateApplicationResponse": {
-      "type": "object",
-      "properties": {
-        "application": {
-          "$ref": "#/definitions/sharedApplication"
         }
       }
     },
@@ -527,7 +421,55 @@
         }
       }
     },
-    "sharedApplication": {
+    "sharedv1Operation": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "method": {
+          "type": "string"
+        },
+        "pathSegmentId": {
+          "type": "string"
+        }
+      }
+    },
+    "v1APIGraph": {
+      "type": "object",
+      "properties": {
+        "segments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1PathSegment"
+          }
+        },
+        "edges": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1Edge"
+          }
+        },
+        "operations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sharedv1Operation"
+          }
+        }
+      }
+    },
+    "v1AddProfileResponse": {
+      "type": "object",
+      "properties": {
+        "profile": {
+          "$ref": "#/definitions/v1ApplicationProfile"
+        }
+      }
+    },
+    "v1Application": {
       "type": "object",
       "properties": {
         "id": {
@@ -542,7 +484,7 @@
         }
       }
     },
-    "sharedApplicationProfile": {
+    "v1ApplicationProfile": {
       "type": "object",
       "properties": {
         "id": {
@@ -559,16 +501,131 @@
           "type": "string",
           "format": "date-time"
         },
-        "graph": {
-          "$ref": "#/definitions/sharedProfileGraph"
+        "apiGraph": {
+          "$ref": "#/definitions/v1APIGraph"
         }
       }
     },
-    "sharedProfileGraph": {
+    "v1CreateApplicationRequest": {
       "type": "object",
       "properties": {
-        "data": {
+        "name": {
           "type": "string"
+        }
+      }
+    },
+    "v1CreateApplicationResponse": {
+      "type": "object",
+      "properties": {
+        "application": {
+          "$ref": "#/definitions/v1Application"
+        }
+      }
+    },
+    "v1DeleteApplicationResponse": {
+      "type": "object"
+    },
+    "v1DeleteProfileResponse": {
+      "type": "object"
+    },
+    "v1Edge": {
+      "type": "object",
+      "properties": {
+        "from": {
+          "type": "string"
+        },
+        "to": {
+          "type": "string"
+        }
+      }
+    },
+    "v1GetApplicationResponse": {
+      "type": "object",
+      "properties": {
+        "application": {
+          "$ref": "#/definitions/v1Application"
+        }
+      }
+    },
+    "v1GetLatestProfileResponse": {
+      "type": "object",
+      "properties": {
+        "profile": {
+          "$ref": "#/definitions/v1ApplicationProfile"
+        }
+      }
+    },
+    "v1GetProfileByIDResponse": {
+      "type": "object",
+      "properties": {
+        "profile": {
+          "$ref": "#/definitions/v1ApplicationProfile"
+        }
+      }
+    },
+    "v1GetProfileByVersionResponse": {
+      "type": "object",
+      "properties": {
+        "profile": {
+          "$ref": "#/definitions/v1ApplicationProfile"
+        }
+      }
+    },
+    "v1ListApplicationsResponse": {
+      "type": "object",
+      "properties": {
+        "applications": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1Application"
+          }
+        }
+      }
+    },
+    "v1ListLatestProfilesResponse": {
+      "type": "object",
+      "properties": {
+        "profiles": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1ApplicationProfile"
+          }
+        }
+      }
+    },
+    "v1ListProfilesByApplicationResponse": {
+      "type": "object",
+      "properties": {
+        "profiles": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1ApplicationProfile"
+          }
+        }
+      }
+    },
+    "v1PathSegment": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "isParam": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1UpdateApplicationResponse": {
+      "type": "object",
+      "properties": {
+        "application": {
+          "$ref": "#/definitions/v1Application"
         }
       }
     }
