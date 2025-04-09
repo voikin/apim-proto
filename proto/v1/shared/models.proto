@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package v1.shared;
+
+option go_package = "github.com/voikin/apim-proto/gen/go/v1/shared;shared";
+
+import "google/protobuf/timestamp.proto";
+
+message Application {
+    string id = 1;
+    string name = 2;
+    google.protobuf.Timestamp created_at = 3;
+  }
+  
+  message ApplicationProfile {
+    string id = 1;
+    string application_id = 2;
+    uint32 version = 3;
+    google.protobuf.Timestamp created_at = 4;
+    optional ProfileGraph graph = 5;
+  }
+  
+  message ProfileGraph {
+    string data = 1;
+  }
