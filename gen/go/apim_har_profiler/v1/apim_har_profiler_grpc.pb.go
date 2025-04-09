@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             (unknown)
-// source: apim_har_profiler/apim_har_profiler.proto
+// source: apim_har_profiler/v1/apim_har_profiler.proto
 
 package apim_har_profiler
 
@@ -19,7 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	HARProfilerService_BuildAPIGraph_FullMethodName = "/apim_profile_store.v1.HARProfilerService/BuildAPIGraph"
+	HARProfilerService_BuildAPIGraph_FullMethodName = "/apim_har_profiler.v1.HARProfilerService/BuildAPIGraph"
 )
 
 // HARProfilerServiceClient is the client API for HARProfilerService service.
@@ -108,7 +108,7 @@ func _HARProfilerService_BuildAPIGraph_Handler(srv interface{}, ctx context.Cont
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var HARProfilerService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "apim_profile_store.v1.HARProfilerService",
+	ServiceName: "apim_har_profiler.v1.HARProfilerService",
 	HandlerType: (*HARProfilerServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -117,5 +117,5 @@ var HARProfilerService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "apim_har_profiler/apim_har_profiler.proto",
+	Metadata: "apim_har_profiler/v1/apim_har_profiler.proto",
 }
