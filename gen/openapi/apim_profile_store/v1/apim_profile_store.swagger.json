@@ -439,6 +439,13 @@
             "type": "object",
             "$ref": "#/definitions/v1Parameter"
           }
+        },
+        "statusCodes": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
         }
       }
     },
