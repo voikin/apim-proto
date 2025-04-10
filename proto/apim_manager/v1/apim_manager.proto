@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package apim_manager.v1;
+
+option go_package = "github.com/voikin/apim-proto/gen/go/apim_manager/v1;apim_manager";
+
+import "google/api/annotations.proto";
+import "buf/validate/validate.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  info : {title : "HAR profiler API" version : "0.0.1"}
+};
+
+service ManagerService {
+  rpc GenerateOpenAPISpecFromHAR(GenerateOpenAPISpecFromHARRequest) returns (GenerateOpenAPISpecFromHARResponse) {
+    option (google.api.http) = {
+      post : "/api/v1/generate-openapi-spec-from-har"
+      body : "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      tags : "Actions";
+  };
+}
+}
+
+message GenerateOpenAPISpecFromHARRequest {
+  string application_id = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.min_len = 1
+  ];
+  string har_json = 2 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.min_len = 1
+  ];
+}
+
+message GenerateOpenAPISpecFromHARResponse { string spec = 1; }

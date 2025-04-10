@@ -1,0 +1,101 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "HAR profiler API",
+    "version": "0.0.1"
+  },
+  "tags": [
+    {
+      "name": "ManagerService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/generate-openapi-spec-from-har": {
+      "post": {
+        "operationId": "ManagerService_GenerateOpenAPISpecFromHAR",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GenerateOpenAPISpecFromHARResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1GenerateOpenAPISpecFromHARRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Actions"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1GenerateOpenAPISpecFromHARRequest": {
+      "type": "object",
+      "properties": {
+        "applicationId": {
+          "type": "string"
+        },
+        "harJson": {
+          "type": "string"
+        }
+      }
+    },
+    "v1GenerateOpenAPISpecFromHARResponse": {
+      "type": "object",
+      "properties": {
+        "spec": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
