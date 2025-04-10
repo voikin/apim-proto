@@ -1,12 +1,12 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "HAR Profiler API",
+    "title": "OpenAPI Exporter API",
     "version": "0.0.1"
   },
   "tags": [
     {
-      "name": "HARProfilerService"
+      "name": "OpenAPIExporterService"
     }
   ],
   "consumes": [
@@ -16,14 +16,14 @@
     "application/json"
   ],
   "paths": {
-    "/api/v1/build-api-graph": {
+    "/api/v1/build-openapi-spec": {
       "post": {
-        "operationId": "HARProfilerService_BuildAPIGraph",
+        "operationId": "OpenAPIExporterService_BuildOpenAPISpec",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1BuildAPIGraphResponse"
+              "$ref": "#/definitions/v1BuildOpenAPISpecResponse"
             }
           },
           "default": {
@@ -39,12 +39,12 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/v1BuildAPIGraphRequest"
+              "$ref": "#/definitions/v1BuildOpenAPISpecRequest"
             }
           }
         ],
         "tags": [
-          "API graph"
+          "OpenAPI Spec"
         ]
       }
     }
@@ -132,19 +132,19 @@
         }
       }
     },
-    "v1BuildAPIGraphRequest": {
+    "v1BuildOpenAPISpecRequest": {
       "type": "object",
       "properties": {
         "harJson": {
-          "type": "string"
+          "$ref": "#/definitions/v1APIGraph"
         }
       }
     },
-    "v1BuildAPIGraphResponse": {
+    "v1BuildOpenAPISpecResponse": {
       "type": "object",
       "properties": {
-        "graph": {
-          "$ref": "#/definitions/v1APIGraph"
+        "spec": {
+          "type": "string"
         }
       }
     },

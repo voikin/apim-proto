@@ -9,11 +9,12 @@ import "buf/validate/validate.proto";
 import "protoc-gen-openapiv2/options/annotations.proto";
 
 option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
-  info : {title : "HAR profiler API" version : "0.0.1"}
+  info : {title : "Manager API" version : "0.0.1"}
 };
 
 service ManagerService {
-  rpc GenerateOpenAPISpecFromHAR(GenerateOpenAPISpecFromHARRequest) returns (GenerateOpenAPISpecFromHARResponse) {
+  rpc GenerateOpenAPISpecFromHAR(GenerateOpenAPISpecFromHARRequest)
+      returns (GenerateOpenAPISpecFromHARResponse) {
     option (google.api.http) = {
       post : "/api/v1/generate-openapi-spec-from-har"
       body : "*"

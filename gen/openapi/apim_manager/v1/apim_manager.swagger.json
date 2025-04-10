@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "HAR profiler API",
+    "title": "Manager API",
     "version": "0.0.1"
   },
   "tags": [

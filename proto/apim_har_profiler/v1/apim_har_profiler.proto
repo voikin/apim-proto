@@ -10,7 +10,7 @@ import "protoc-gen-openapiv2/options/annotations.proto";
 import "shared/v1/api_graph.proto";
 
 option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
-  info : {title : "HAR profiler API" version : "0.0.1"}
+  info : {title : "HAR Profiler API" version : "0.0.1"}
 };
 
 service HARProfilerService {
