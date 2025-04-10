@@ -143,7 +143,7 @@
     "v1BuildOpenAPISpecResponse": {
       "type": "object",
       "properties": {
-        "spec": {
+        "specJson": {
           "type": "string"
         }
       }

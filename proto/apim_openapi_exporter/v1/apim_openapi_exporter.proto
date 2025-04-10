@@ -30,4 +30,4 @@ message BuildOpenAPISpecRequest {
   shared.v1.APIGraph api_graph = 1 [ (buf.validate.field).required = true ];
 }
 
-message BuildOpenAPISpecResponse { string spec = 1; }
+message BuildOpenAPISpecResponse { string spec_json = 1; }
