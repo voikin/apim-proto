@@ -43,8 +43,8 @@ message Operation {
 }
 
 message Transition {
-  string from_operation_id = 1;
-  string to_operation_id = 2;
+  string from = 1;
+  string to = 2;
 }
 
 message APIGraph {

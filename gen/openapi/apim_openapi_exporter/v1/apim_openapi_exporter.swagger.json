@@ -217,10 +217,10 @@
     "v1Transition": {
       "type": "object",
       "properties": {
-        "fromOperationId": {
+        "from": {
           "type": "string"
         },
-        "toOperationId": {
+        "to": {
           "type": "string"
         }
       }
