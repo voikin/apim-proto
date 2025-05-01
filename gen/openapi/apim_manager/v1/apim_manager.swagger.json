@@ -84,8 +84,12 @@
         "applicationId": {
           "type": "string"
         },
-        "harJson": {
-          "type": "string"
+        "harFiles": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1HARFileWithFlags"
+          }
         }
       }
     },
@@ -94,6 +98,17 @@
       "properties": {
         "spec": {
           "type": "string"
+        }
+      }
+    },
+    "v1HARFileWithFlags": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "string"
+        },
+        "isSequence": {
+          "type": "boolean"
         }
       }
     }

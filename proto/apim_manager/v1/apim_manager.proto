@@ -30,10 +30,15 @@ message GenerateOpenAPISpecFromHARRequest {
     (buf.validate.field).required = true,
     (buf.validate.field).string.min_len = 1
   ];
-  string har_json = 2 [
+  repeated HARFileWithFlags har_files = 2;
+}
+
+message HARFileWithFlags {
+  string content = 1 [
     (buf.validate.field).required = true,
     (buf.validate.field).string.min_len = 1
   ];
+  bool is_sequence = 2;
 }
 
 message GenerateOpenAPISpecFromHARResponse { string spec = 1; }
