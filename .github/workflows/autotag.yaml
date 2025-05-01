@@ -32,7 +32,7 @@ jobs:
 
           # Увеличиваем PATCH
           patch=$((patch + 1))
-          new_tag="v$major.$minor.$patch"
+          new_tag="$major.$minor.$patch"
 
           echo "New tag: $new_tag"
           echo "new_tag=$new_tag" >> $GITHUB_OUTPUT
