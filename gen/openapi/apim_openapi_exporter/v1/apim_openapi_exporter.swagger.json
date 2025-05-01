@@ -129,6 +129,13 @@
             "type": "object",
             "$ref": "#/definitions/sharedv1Operation"
           }
+        },
+        "transitions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1Transition"
+          }
         }
       }
     },
@@ -203,6 +210,17 @@
           "type": "string"
         },
         "name": {
+          "type": "string"
+        }
+      }
+    },
+    "v1Transition": {
+      "type": "object",
+      "properties": {
+        "fromOperationId": {
+          "type": "string"
+        },
+        "toOperationId": {
           "type": "string"
         }
       }
