@@ -135,7 +135,7 @@
       }
     },
     "/api/v1/applications/{applicationId}/profiles/diff": {
-      "get": {
+      "post": {
         "operationId": "ProfileStoreService_DiffProfiles",
         "responses": {
           "200": {

@@ -112,7 +112,7 @@ rpc GetProfileByVersion(GetProfileByVersionRequest)
 rpc DiffProfiles(DiffProfilesRequest)
     returns (DiffProfilesResponse) {
   option (google.api.http) = {
-    get : "/api/v1/applications/{application_id}/profiles/diff"
+    post : "/api/v1/applications/{application_id}/profiles/diff"
   };
   option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
     tags : "Profiles";
