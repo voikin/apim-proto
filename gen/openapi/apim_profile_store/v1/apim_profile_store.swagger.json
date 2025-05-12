@@ -134,6 +134,48 @@
         ]
       }
     },
+    "/api/v1/applications/{applicationId}/profiles/diff": {
+      "get": {
+        "operationId": "ProfileStoreService_DiffProfiles",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1DiffProfilesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "applicationId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "oldProfileId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "newProfileId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Profiles"
+        ]
+      }
+    },
     "/api/v1/applications/{applicationId}/profiles/latest": {
       "get": {
         "operationId": "ProfileStoreService_GetLatestProfile",
@@ -548,6 +590,25 @@
     },
     "v1DeleteProfileResponse": {
       "type": "object"
+    },
+    "v1DiffProfilesResponse": {
+      "type": "object",
+      "properties": {
+        "added": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sharedv1Operation"
+          }
+        },
+        "removed": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sharedv1Operation"
+          }
+        }
+      }
     },
     "v1Edge": {
       "type": "object",

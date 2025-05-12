@@ -109,6 +109,16 @@ rpc GetProfileByVersion(GetProfileByVersionRequest)
 };
 }
 
+rpc DiffProfiles(DiffProfilesRequest)
+    returns (DiffProfilesResponse) {
+  option (google.api.http) = {
+    get : "/api/v1/applications/{application_id}/profiles/diff"
+  };
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    tags : "Profiles";
+};
+}
+
 rpc DeleteProfile(DeleteProfileRequest) returns (DeleteProfileResponse) {
   option (google.api.http) = {
     delete : "/api/v1/profiles/{id}"
@@ -249,4 +259,25 @@ message ListLatestProfilesRequest {}
 
 message ListLatestProfilesResponse {
   repeated shared.v1.ApplicationProfile profiles = 1;
+}
+
+message DiffProfilesRequest {
+  string application_id = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.uuid = true
+  ];
+  string old_profile_id = 2 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.uuid = true
+  ];
+
+  string new_profile_id = 3 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.uuid = true
+  ];
+}
+
+message DiffProfilesResponse {
+  repeated shared.v1.Operation added = 1;
+  repeated shared.v1.Operation removed = 2;
 }

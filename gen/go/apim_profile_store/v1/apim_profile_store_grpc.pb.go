@@ -28,6 +28,7 @@ const (
 	ProfileStoreService_GetProfileByID_FullMethodName            = "/apim_profile_store.v1.ProfileStoreService/GetProfileByID"
 	ProfileStoreService_GetLatestProfile_FullMethodName          = "/apim_profile_store.v1.ProfileStoreService/GetLatestProfile"
 	ProfileStoreService_GetProfileByVersion_FullMethodName       = "/apim_profile_store.v1.ProfileStoreService/GetProfileByVersion"
+	ProfileStoreService_DiffProfiles_FullMethodName              = "/apim_profile_store.v1.ProfileStoreService/DiffProfiles"
 	ProfileStoreService_DeleteProfile_FullMethodName             = "/apim_profile_store.v1.ProfileStoreService/DeleteProfile"
 	ProfileStoreService_ListProfilesByApplication_FullMethodName = "/apim_profile_store.v1.ProfileStoreService/ListProfilesByApplication"
 	ProfileStoreService_ListLatestProfiles_FullMethodName        = "/apim_profile_store.v1.ProfileStoreService/ListLatestProfiles"
@@ -46,6 +47,7 @@ type ProfileStoreServiceClient interface {
 	GetProfileByID(ctx context.Context, in *GetProfileByIDRequest, opts ...grpc.CallOption) (*GetProfileByIDResponse, error)
 	GetLatestProfile(ctx context.Context, in *GetLatestProfileRequest, opts ...grpc.CallOption) (*GetLatestProfileResponse, error)
 	GetProfileByVersion(ctx context.Context, in *GetProfileByVersionRequest, opts ...grpc.CallOption) (*GetProfileByVersionResponse, error)
+	DiffProfiles(ctx context.Context, in *DiffProfilesRequest, opts ...grpc.CallOption) (*DiffProfilesResponse, error)
 	DeleteProfile(ctx context.Context, in *DeleteProfileRequest, opts ...grpc.CallOption) (*DeleteProfileResponse, error)
 	ListProfilesByApplication(ctx context.Context, in *ListProfilesByApplicationRequest, opts ...grpc.CallOption) (*ListProfilesByApplicationResponse, error)
 	ListLatestProfiles(ctx context.Context, in *ListLatestProfilesRequest, opts ...grpc.CallOption) (*ListLatestProfilesResponse, error)
@@ -149,6 +151,16 @@ func (c *profileStoreServiceClient) GetProfileByVersion(ctx context.Context, in 
 	return out, nil
 }
 
+func (c *profileStoreServiceClient) DiffProfiles(ctx context.Context, in *DiffProfilesRequest, opts ...grpc.CallOption) (*DiffProfilesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DiffProfilesResponse)
+	err := c.cc.Invoke(ctx, ProfileStoreService_DiffProfiles_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *profileStoreServiceClient) DeleteProfile(ctx context.Context, in *DeleteProfileRequest, opts ...grpc.CallOption) (*DeleteProfileResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(DeleteProfileResponse)
@@ -192,6 +204,7 @@ type ProfileStoreServiceServer interface {
 	GetProfileByID(context.Context, *GetProfileByIDRequest) (*GetProfileByIDResponse, error)
 	GetLatestProfile(context.Context, *GetLatestProfileRequest) (*GetLatestProfileResponse, error)
 	GetProfileByVersion(context.Context, *GetProfileByVersionRequest) (*GetProfileByVersionResponse, error)
+	DiffProfiles(context.Context, *DiffProfilesRequest) (*DiffProfilesResponse, error)
 	DeleteProfile(context.Context, *DeleteProfileRequest) (*DeleteProfileResponse, error)
 	ListProfilesByApplication(context.Context, *ListProfilesByApplicationRequest) (*ListProfilesByApplicationResponse, error)
 	ListLatestProfiles(context.Context, *ListLatestProfilesRequest) (*ListLatestProfilesResponse, error)
@@ -231,6 +244,9 @@ func (UnimplementedProfileStoreServiceServer) GetLatestProfile(context.Context, 
 }
 func (UnimplementedProfileStoreServiceServer) GetProfileByVersion(context.Context, *GetProfileByVersionRequest) (*GetProfileByVersionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetProfileByVersion not implemented")
+}
+func (UnimplementedProfileStoreServiceServer) DiffProfiles(context.Context, *DiffProfilesRequest) (*DiffProfilesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DiffProfiles not implemented")
 }
 func (UnimplementedProfileStoreServiceServer) DeleteProfile(context.Context, *DeleteProfileRequest) (*DeleteProfileResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteProfile not implemented")
@@ -424,6 +440,24 @@ func _ProfileStoreService_GetProfileByVersion_Handler(srv interface{}, ctx conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ProfileStoreService_DiffProfiles_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DiffProfilesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProfileStoreServiceServer).DiffProfiles(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProfileStoreService_DiffProfiles_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProfileStoreServiceServer).DiffProfiles(ctx, req.(*DiffProfilesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ProfileStoreService_DeleteProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeleteProfileRequest)
 	if err := dec(in); err != nil {
@@ -520,6 +554,10 @@ var ProfileStoreService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetProfileByVersion",
 			Handler:    _ProfileStoreService_GetProfileByVersion_Handler,
+		},
+		{
+			MethodName: "DiffProfiles",
+			Handler:    _ProfileStoreService_DiffProfiles_Handler,
 		},
 		{
 			MethodName: "DeleteProfile",
