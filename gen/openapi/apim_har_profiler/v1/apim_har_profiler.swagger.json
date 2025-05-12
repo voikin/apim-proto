@@ -142,11 +142,12 @@
     "v1BuildAPIGraphRequest": {
       "type": "object",
       "properties": {
-        "harJson": {
-          "type": "string"
-        },
-        "isSequence": {
-          "type": "boolean"
+        "harFiles": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1HARFileWithFlags"
+          }
         }
       }
     },
@@ -166,6 +167,17 @@
         },
         "to": {
           "type": "string"
+        }
+      }
+    },
+    "v1HARFileWithFlags": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "string"
+        },
+        "isSequence": {
+          "type": "boolean"
         }
       }
     },

@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package shared.v1;
+
+option go_package = "github.com/voikin/apim-proto/gen/go/shared/v1;shared";
+
+message HARFileWithFlags {
+  string content = 1;
+  bool is_sequence = 2;
+}
