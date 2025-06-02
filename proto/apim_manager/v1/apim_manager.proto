@@ -7,6 +7,8 @@ option go_package = "github.com/voikin/apim-proto/gen/go/apim_manager/v1;apim_ma
 import "google/api/annotations.proto";
 import "buf/validate/validate.proto";
 import "protoc-gen-openapiv2/options/annotations.proto";
+import "shared/v1/application.proto";
+import "shared/v1/api_graph.proto";
 import "shared/v1/har.proto";
 
 option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
@@ -14,24 +16,188 @@ option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
 };
 
 service ManagerService {
-  rpc GenerateOpenAPISpecFromHAR(GenerateOpenAPISpecFromHARRequest)
-      returns (GenerateOpenAPISpecFromHARResponse) {
+
+  rpc CreateApplication(CreateApplicationRequest)
+      returns (CreateApplicationResponse) {
     option (google.api.http) = {
-      post : "/api/v1/generate-openapi-spec-from-har"
+      post : "/api/v1/applications"
       body : "*"
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      tags : "Actions";
+      tags : "Applications";
   };
+}
+
+rpc GetApplication(GetApplicationRequest) returns (GetApplicationResponse) {
+  option (google.api.http) = {
+    get : "/api/v1/applications/{id}"
+  };
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    tags : "Applications";
+};
+}
+
+rpc DeleteApplication(DeleteApplicationRequest)
+    returns (DeleteApplicationResponse) {
+  option (google.api.http) = {
+    delete : "/api/v1/applications/{id}"
+  };
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    tags : "Applications";
+};
+}
+
+rpc ListApplications(ListApplicationsRequest)
+    returns (ListApplicationsResponse) {
+  option (google.api.http) = {
+    get : "/api/v1/applications"
+  };
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    tags : "Applications";
+};
+}
+
+// Profile operations
+
+rpc AddProfile(AddProfileRequest) returns (AddProfileResponse) {
+  option (google.api.http) = {
+    post : "/api/v1/applications/{application_id}/profiles"
+    body : "*"
+  };
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    tags : "Profiles";
+};
+}
+
+rpc GetProfileByID(GetProfileByIDRequest) returns (GetProfileByIDResponse) {
+  option (google.api.http) = {
+    get : "/api/v1/profiles/{id}"
+  };
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    tags : "Profiles";
+};
+}
+
+rpc DiffProfiles(DiffProfilesRequest) returns (DiffProfilesResponse) {
+  option (google.api.http) = {
+    post : "/api/v1/applications/{application_id}/profiles/diff"
+  };
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    tags : "Profiles";
+};
+}
+
+rpc DeleteProfile(DeleteProfileRequest) returns (DeleteProfileResponse) {
+  option (google.api.http) = {
+    delete : "/api/v1/profiles/{id}"
+  };
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    tags : "Profiles";
+};
+}
+
+rpc BuildOpenAPISpec(BuildOpenAPISpecRequest)
+    returns (BuildOpenAPISpecResponse) {
+  option (google.api.http) = {
+    post : "/api/v1/build-openapi-spec"
+    body : "*"
+  };
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    tags : "OpenAPI Spec";
+};
 }
 }
 
-message GenerateOpenAPISpecFromHARRequest {
-  string application_id = 1 [
+message CreateApplicationRequest {
+  string name = 1 [
     (buf.validate.field).required = true,
     (buf.validate.field).string.min_len = 1
+  ];
+}
+
+message CreateApplicationResponse { shared.v1.Application application = 1; }
+
+message GetApplicationRequest {
+  string id = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.uuid = true
+  ];
+}
+
+message GetApplicationResponse {
+  shared.v1.Application application = 1;
+  repeated shared.v1.ApplicationProfile profiles = 2;
+}
+
+message DeleteApplicationRequest {
+  string id = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.uuid = true
+  ];
+}
+
+message DeleteApplicationResponse {}
+
+message ListApplicationsRequest {}
+
+message ListApplicationsResponse {
+  repeated shared.v1.Application applications = 1;
+}
+
+message AddProfileRequest {
+  string application_id = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.uuid = true
   ];
   repeated shared.v1.HARFileWithFlags har_files = 2;
 }
 
-message GenerateOpenAPISpecFromHARResponse { string spec = 1; }
+message AddProfileResponse { shared.v1.ApplicationProfile profile = 1; }
+
+message GetProfileByIDRequest {
+  string id = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.uuid = true
+  ];
+}
+
+message GetProfileByIDResponse { shared.v1.ApplicationProfile profile = 1; }
+
+message DeleteProfileRequest {
+  string id = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.uuid = true
+  ];
+}
+
+message DeleteProfileResponse {}
+
+message DiffProfilesRequest {
+  string application_id = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.uuid = true
+  ];
+  string old_profile_id = 2 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.uuid = true
+  ];
+
+  string new_profile_id = 3 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.uuid = true
+  ];
+}
+
+message DiffProfilesResponse {
+  repeated shared.v1.Operation added = 1;
+  repeated shared.v1.Operation removed = 2;
+}
+
+message BuildOpenAPISpecRequest {
+  string id = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.uuid = true
+  ];
+}
+
+message BuildOpenAPISpecResponse { string spec_json = 1; }

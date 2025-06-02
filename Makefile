@@ -1,5 +1,3 @@
-# --- CONFIG ---
-
 LOCAL_BIN     := $(CURDIR)/bin
 
 GRPC_GATEWAY_VERSION  := v2.25.1
@@ -10,8 +8,6 @@ BUF_VERSION           := v1.51.0
 define install_tool
 	GOBIN=$(LOCAL_BIN) go install $(1)@$(2)
 endef
-
-# --- INSTALL TOOLS ---
 
 .PHONY: install
 install:
@@ -27,13 +23,9 @@ install:
 update-buf:
 	$(LOCAL_BIN)/buf dep update
 
-# --- LINT ---
-
 .PHONY: lint
 lint:
 	PATH="$(PATH):$(LOCAL_BIN)" $(LOCAL_BIN)/buf lint
-
-# --- PROTO GEN ---
 
 .PHONY: gen
 gen:

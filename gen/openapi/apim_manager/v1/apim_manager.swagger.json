@@ -16,14 +16,34 @@
     "application/json"
   ],
   "paths": {
-    "/api/v1/generate-openapi-spec-from-har": {
-      "post": {
-        "operationId": "ManagerService_GenerateOpenAPISpecFromHAR",
+    "/api/v1/applications": {
+      "get": {
+        "operationId": "ManagerService_ListApplications",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1GenerateOpenAPISpecFromHARResponse"
+              "$ref": "#/definitions/v1ListApplicationsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "Applications"
+        ]
+      },
+      "post": {
+        "operationId": "ManagerService_CreateApplication",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CreateApplicationResponse"
             }
           },
           "default": {
@@ -39,17 +59,257 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/v1GenerateOpenAPISpecFromHARRequest"
+              "$ref": "#/definitions/v1CreateApplicationRequest"
             }
           }
         ],
         "tags": [
-          "Actions"
+          "Applications"
+        ]
+      }
+    },
+    "/api/v1/applications/{applicationId}/profiles": {
+      "post": {
+        "operationId": "ManagerService_AddProfile",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1AddProfileResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "applicationId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ManagerServiceAddProfileBody"
+            }
+          }
+        ],
+        "tags": [
+          "Profiles"
+        ]
+      }
+    },
+    "/api/v1/applications/{applicationId}/profiles/diff": {
+      "post": {
+        "operationId": "ManagerService_DiffProfiles",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1DiffProfilesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "applicationId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "oldProfileId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "newProfileId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Profiles"
+        ]
+      }
+    },
+    "/api/v1/applications/{id}": {
+      "get": {
+        "operationId": "ManagerService_GetApplication",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetApplicationResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Applications"
+        ]
+      },
+      "delete": {
+        "operationId": "ManagerService_DeleteApplication",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1DeleteApplicationResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Applications"
+        ]
+      }
+    },
+    "/api/v1/build-openapi-spec": {
+      "post": {
+        "operationId": "ManagerService_BuildOpenAPISpec",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1BuildOpenAPISpecResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1BuildOpenAPISpecRequest"
+            }
+          }
+        ],
+        "tags": [
+          "OpenAPI Spec"
+        ]
+      }
+    },
+    "/api/v1/profiles/{id}": {
+      "get": {
+        "operationId": "ManagerService_GetProfileByID",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetProfileByIDResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Profiles"
+        ]
+      },
+      "delete": {
+        "operationId": "ManagerService_DeleteProfile",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1DeleteProfileResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Profiles"
         ]
       }
     }
   },
   "definitions": {
+    "ManagerServiceAddProfileBody": {
+      "type": "object",
+      "properties": {
+        "harFiles": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1HARFileWithFlags"
+          }
+        }
+      }
+    },
     "protobufAny": {
       "type": "object",
       "properties": {
@@ -78,26 +338,200 @@
         }
       }
     },
-    "v1GenerateOpenAPISpecFromHARRequest": {
+    "sharedv1Operation": {
       "type": "object",
       "properties": {
-        "applicationId": {
+        "id": {
           "type": "string"
         },
-        "harFiles": {
+        "method": {
+          "type": "string"
+        },
+        "pathSegmentId": {
+          "type": "string"
+        },
+        "queryParameters": {
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/v1HARFileWithFlags"
+            "$ref": "#/definitions/v1Parameter"
+          }
+        },
+        "statusCodes": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
           }
         }
       }
     },
-    "v1GenerateOpenAPISpecFromHARResponse": {
+    "v1APIGraph": {
       "type": "object",
       "properties": {
-        "spec": {
+        "segments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1PathSegment"
+          }
+        },
+        "edges": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1Edge"
+          }
+        },
+        "operations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sharedv1Operation"
+          }
+        },
+        "transitions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1Transition"
+          }
+        }
+      }
+    },
+    "v1AddProfileResponse": {
+      "type": "object",
+      "properties": {
+        "profile": {
+          "$ref": "#/definitions/v1ApplicationProfile"
+        }
+      }
+    },
+    "v1Application": {
+      "type": "object",
+      "properties": {
+        "id": {
           "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "v1ApplicationProfile": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "applicationId": {
+          "type": "string"
+        },
+        "version": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "apiGraph": {
+          "$ref": "#/definitions/v1APIGraph"
+        }
+      }
+    },
+    "v1BuildOpenAPISpecRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "v1BuildOpenAPISpecResponse": {
+      "type": "object",
+      "properties": {
+        "specJson": {
+          "type": "string"
+        }
+      }
+    },
+    "v1CreateApplicationRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "v1CreateApplicationResponse": {
+      "type": "object",
+      "properties": {
+        "application": {
+          "$ref": "#/definitions/v1Application"
+        }
+      }
+    },
+    "v1DeleteApplicationResponse": {
+      "type": "object"
+    },
+    "v1DeleteProfileResponse": {
+      "type": "object"
+    },
+    "v1DiffProfilesResponse": {
+      "type": "object",
+      "properties": {
+        "added": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sharedv1Operation"
+          }
+        },
+        "removed": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sharedv1Operation"
+          }
+        }
+      }
+    },
+    "v1Edge": {
+      "type": "object",
+      "properties": {
+        "from": {
+          "type": "string"
+        },
+        "to": {
+          "type": "string"
+        }
+      }
+    },
+    "v1GetApplicationResponse": {
+      "type": "object",
+      "properties": {
+        "application": {
+          "$ref": "#/definitions/v1Application"
+        },
+        "profiles": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1ApplicationProfile"
+          }
+        }
+      }
+    },
+    "v1GetProfileByIDResponse": {
+      "type": "object",
+      "properties": {
+        "profile": {
+          "$ref": "#/definitions/v1ApplicationProfile"
         }
       }
     },
@@ -109,6 +543,77 @@
         },
         "isSequence": {
           "type": "boolean"
+        }
+      }
+    },
+    "v1ListApplicationsResponse": {
+      "type": "object",
+      "properties": {
+        "applications": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1Application"
+          }
+        }
+      }
+    },
+    "v1Parameter": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/v1ParameterType"
+        },
+        "example": {
+          "type": "string"
+        }
+      }
+    },
+    "v1ParameterType": {
+      "type": "string",
+      "enum": [
+        "PARAMETER_TYPE_UNSPECIFIED",
+        "PARAMETER_TYPE_INTEGER",
+        "PARAMETER_TYPE_UUID"
+      ],
+      "default": "PARAMETER_TYPE_UNSPECIFIED"
+    },
+    "v1PathSegment": {
+      "type": "object",
+      "properties": {
+        "static": {
+          "$ref": "#/definitions/v1StaticSegment"
+        },
+        "param": {
+          "$ref": "#/definitions/v1Parameter"
+        }
+      }
+    },
+    "v1StaticSegment": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "v1Transition": {
+      "type": "object",
+      "properties": {
+        "from": {
+          "type": "string"
+        },
+        "to": {
+          "type": "string"
         }
       }
     }

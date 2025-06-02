@@ -19,14 +19,30 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ManagerService_GenerateOpenAPISpecFromHAR_FullMethodName = "/apim_manager.v1.ManagerService/GenerateOpenAPISpecFromHAR"
+	ManagerService_CreateApplication_FullMethodName = "/apim_manager.v1.ManagerService/CreateApplication"
+	ManagerService_GetApplication_FullMethodName    = "/apim_manager.v1.ManagerService/GetApplication"
+	ManagerService_DeleteApplication_FullMethodName = "/apim_manager.v1.ManagerService/DeleteApplication"
+	ManagerService_ListApplications_FullMethodName  = "/apim_manager.v1.ManagerService/ListApplications"
+	ManagerService_AddProfile_FullMethodName        = "/apim_manager.v1.ManagerService/AddProfile"
+	ManagerService_GetProfileByID_FullMethodName    = "/apim_manager.v1.ManagerService/GetProfileByID"
+	ManagerService_DiffProfiles_FullMethodName      = "/apim_manager.v1.ManagerService/DiffProfiles"
+	ManagerService_DeleteProfile_FullMethodName     = "/apim_manager.v1.ManagerService/DeleteProfile"
+	ManagerService_BuildOpenAPISpec_FullMethodName  = "/apim_manager.v1.ManagerService/BuildOpenAPISpec"
 )
 
 // ManagerServiceClient is the client API for ManagerService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ManagerServiceClient interface {
-	GenerateOpenAPISpecFromHAR(ctx context.Context, in *GenerateOpenAPISpecFromHARRequest, opts ...grpc.CallOption) (*GenerateOpenAPISpecFromHARResponse, error)
+	CreateApplication(ctx context.Context, in *CreateApplicationRequest, opts ...grpc.CallOption) (*CreateApplicationResponse, error)
+	GetApplication(ctx context.Context, in *GetApplicationRequest, opts ...grpc.CallOption) (*GetApplicationResponse, error)
+	DeleteApplication(ctx context.Context, in *DeleteApplicationRequest, opts ...grpc.CallOption) (*DeleteApplicationResponse, error)
+	ListApplications(ctx context.Context, in *ListApplicationsRequest, opts ...grpc.CallOption) (*ListApplicationsResponse, error)
+	AddProfile(ctx context.Context, in *AddProfileRequest, opts ...grpc.CallOption) (*AddProfileResponse, error)
+	GetProfileByID(ctx context.Context, in *GetProfileByIDRequest, opts ...grpc.CallOption) (*GetProfileByIDResponse, error)
+	DiffProfiles(ctx context.Context, in *DiffProfilesRequest, opts ...grpc.CallOption) (*DiffProfilesResponse, error)
+	DeleteProfile(ctx context.Context, in *DeleteProfileRequest, opts ...grpc.CallOption) (*DeleteProfileResponse, error)
+	BuildOpenAPISpec(ctx context.Context, in *BuildOpenAPISpecRequest, opts ...grpc.CallOption) (*BuildOpenAPISpecResponse, error)
 }
 
 type managerServiceClient struct {
@@ -37,10 +53,90 @@ func NewManagerServiceClient(cc grpc.ClientConnInterface) ManagerServiceClient {
 	return &managerServiceClient{cc}
 }
 
-func (c *managerServiceClient) GenerateOpenAPISpecFromHAR(ctx context.Context, in *GenerateOpenAPISpecFromHARRequest, opts ...grpc.CallOption) (*GenerateOpenAPISpecFromHARResponse, error) {
+func (c *managerServiceClient) CreateApplication(ctx context.Context, in *CreateApplicationRequest, opts ...grpc.CallOption) (*CreateApplicationResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GenerateOpenAPISpecFromHARResponse)
-	err := c.cc.Invoke(ctx, ManagerService_GenerateOpenAPISpecFromHAR_FullMethodName, in, out, cOpts...)
+	out := new(CreateApplicationResponse)
+	err := c.cc.Invoke(ctx, ManagerService_CreateApplication_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *managerServiceClient) GetApplication(ctx context.Context, in *GetApplicationRequest, opts ...grpc.CallOption) (*GetApplicationResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetApplicationResponse)
+	err := c.cc.Invoke(ctx, ManagerService_GetApplication_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *managerServiceClient) DeleteApplication(ctx context.Context, in *DeleteApplicationRequest, opts ...grpc.CallOption) (*DeleteApplicationResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteApplicationResponse)
+	err := c.cc.Invoke(ctx, ManagerService_DeleteApplication_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *managerServiceClient) ListApplications(ctx context.Context, in *ListApplicationsRequest, opts ...grpc.CallOption) (*ListApplicationsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListApplicationsResponse)
+	err := c.cc.Invoke(ctx, ManagerService_ListApplications_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *managerServiceClient) AddProfile(ctx context.Context, in *AddProfileRequest, opts ...grpc.CallOption) (*AddProfileResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AddProfileResponse)
+	err := c.cc.Invoke(ctx, ManagerService_AddProfile_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *managerServiceClient) GetProfileByID(ctx context.Context, in *GetProfileByIDRequest, opts ...grpc.CallOption) (*GetProfileByIDResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetProfileByIDResponse)
+	err := c.cc.Invoke(ctx, ManagerService_GetProfileByID_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *managerServiceClient) DiffProfiles(ctx context.Context, in *DiffProfilesRequest, opts ...grpc.CallOption) (*DiffProfilesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DiffProfilesResponse)
+	err := c.cc.Invoke(ctx, ManagerService_DiffProfiles_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *managerServiceClient) DeleteProfile(ctx context.Context, in *DeleteProfileRequest, opts ...grpc.CallOption) (*DeleteProfileResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteProfileResponse)
+	err := c.cc.Invoke(ctx, ManagerService_DeleteProfile_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *managerServiceClient) BuildOpenAPISpec(ctx context.Context, in *BuildOpenAPISpecRequest, opts ...grpc.CallOption) (*BuildOpenAPISpecResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(BuildOpenAPISpecResponse)
+	err := c.cc.Invoke(ctx, ManagerService_BuildOpenAPISpec_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -51,7 +147,15 @@ func (c *managerServiceClient) GenerateOpenAPISpecFromHAR(ctx context.Context, i
 // All implementations must embed UnimplementedManagerServiceServer
 // for forward compatibility.
 type ManagerServiceServer interface {
-	GenerateOpenAPISpecFromHAR(context.Context, *GenerateOpenAPISpecFromHARRequest) (*GenerateOpenAPISpecFromHARResponse, error)
+	CreateApplication(context.Context, *CreateApplicationRequest) (*CreateApplicationResponse, error)
+	GetApplication(context.Context, *GetApplicationRequest) (*GetApplicationResponse, error)
+	DeleteApplication(context.Context, *DeleteApplicationRequest) (*DeleteApplicationResponse, error)
+	ListApplications(context.Context, *ListApplicationsRequest) (*ListApplicationsResponse, error)
+	AddProfile(context.Context, *AddProfileRequest) (*AddProfileResponse, error)
+	GetProfileByID(context.Context, *GetProfileByIDRequest) (*GetProfileByIDResponse, error)
+	DiffProfiles(context.Context, *DiffProfilesRequest) (*DiffProfilesResponse, error)
+	DeleteProfile(context.Context, *DeleteProfileRequest) (*DeleteProfileResponse, error)
+	BuildOpenAPISpec(context.Context, *BuildOpenAPISpecRequest) (*BuildOpenAPISpecResponse, error)
 	mustEmbedUnimplementedManagerServiceServer()
 }
 
@@ -62,8 +166,32 @@ type ManagerServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedManagerServiceServer struct{}
 
-func (UnimplementedManagerServiceServer) GenerateOpenAPISpecFromHAR(context.Context, *GenerateOpenAPISpecFromHARRequest) (*GenerateOpenAPISpecFromHARResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GenerateOpenAPISpecFromHAR not implemented")
+func (UnimplementedManagerServiceServer) CreateApplication(context.Context, *CreateApplicationRequest) (*CreateApplicationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateApplication not implemented")
+}
+func (UnimplementedManagerServiceServer) GetApplication(context.Context, *GetApplicationRequest) (*GetApplicationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetApplication not implemented")
+}
+func (UnimplementedManagerServiceServer) DeleteApplication(context.Context, *DeleteApplicationRequest) (*DeleteApplicationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteApplication not implemented")
+}
+func (UnimplementedManagerServiceServer) ListApplications(context.Context, *ListApplicationsRequest) (*ListApplicationsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListApplications not implemented")
+}
+func (UnimplementedManagerServiceServer) AddProfile(context.Context, *AddProfileRequest) (*AddProfileResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddProfile not implemented")
+}
+func (UnimplementedManagerServiceServer) GetProfileByID(context.Context, *GetProfileByIDRequest) (*GetProfileByIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetProfileByID not implemented")
+}
+func (UnimplementedManagerServiceServer) DiffProfiles(context.Context, *DiffProfilesRequest) (*DiffProfilesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DiffProfiles not implemented")
+}
+func (UnimplementedManagerServiceServer) DeleteProfile(context.Context, *DeleteProfileRequest) (*DeleteProfileResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteProfile not implemented")
+}
+func (UnimplementedManagerServiceServer) BuildOpenAPISpec(context.Context, *BuildOpenAPISpecRequest) (*BuildOpenAPISpecResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BuildOpenAPISpec not implemented")
 }
 func (UnimplementedManagerServiceServer) mustEmbedUnimplementedManagerServiceServer() {}
 func (UnimplementedManagerServiceServer) testEmbeddedByValue()                        {}
@@ -86,20 +214,164 @@ func RegisterManagerServiceServer(s grpc.ServiceRegistrar, srv ManagerServiceSer
 	s.RegisterService(&ManagerService_ServiceDesc, srv)
 }
 
-func _ManagerService_GenerateOpenAPISpecFromHAR_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GenerateOpenAPISpecFromHARRequest)
+func _ManagerService_CreateApplication_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateApplicationRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ManagerServiceServer).GenerateOpenAPISpecFromHAR(ctx, in)
+		return srv.(ManagerServiceServer).CreateApplication(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ManagerService_GenerateOpenAPISpecFromHAR_FullMethodName,
+		FullMethod: ManagerService_CreateApplication_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ManagerServiceServer).GenerateOpenAPISpecFromHAR(ctx, req.(*GenerateOpenAPISpecFromHARRequest))
+		return srv.(ManagerServiceServer).CreateApplication(ctx, req.(*CreateApplicationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ManagerService_GetApplication_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetApplicationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ManagerServiceServer).GetApplication(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ManagerService_GetApplication_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ManagerServiceServer).GetApplication(ctx, req.(*GetApplicationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ManagerService_DeleteApplication_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteApplicationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ManagerServiceServer).DeleteApplication(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ManagerService_DeleteApplication_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ManagerServiceServer).DeleteApplication(ctx, req.(*DeleteApplicationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ManagerService_ListApplications_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListApplicationsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ManagerServiceServer).ListApplications(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ManagerService_ListApplications_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ManagerServiceServer).ListApplications(ctx, req.(*ListApplicationsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ManagerService_AddProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddProfileRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ManagerServiceServer).AddProfile(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ManagerService_AddProfile_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ManagerServiceServer).AddProfile(ctx, req.(*AddProfileRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ManagerService_GetProfileByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetProfileByIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ManagerServiceServer).GetProfileByID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ManagerService_GetProfileByID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ManagerServiceServer).GetProfileByID(ctx, req.(*GetProfileByIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ManagerService_DiffProfiles_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DiffProfilesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ManagerServiceServer).DiffProfiles(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ManagerService_DiffProfiles_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ManagerServiceServer).DiffProfiles(ctx, req.(*DiffProfilesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ManagerService_DeleteProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteProfileRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ManagerServiceServer).DeleteProfile(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ManagerService_DeleteProfile_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ManagerServiceServer).DeleteProfile(ctx, req.(*DeleteProfileRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ManagerService_BuildOpenAPISpec_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BuildOpenAPISpecRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ManagerServiceServer).BuildOpenAPISpec(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ManagerService_BuildOpenAPISpec_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ManagerServiceServer).BuildOpenAPISpec(ctx, req.(*BuildOpenAPISpecRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -112,8 +384,40 @@ var ManagerService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*ManagerServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GenerateOpenAPISpecFromHAR",
-			Handler:    _ManagerService_GenerateOpenAPISpecFromHAR_Handler,
+			MethodName: "CreateApplication",
+			Handler:    _ManagerService_CreateApplication_Handler,
+		},
+		{
+			MethodName: "GetApplication",
+			Handler:    _ManagerService_GetApplication_Handler,
+		},
+		{
+			MethodName: "DeleteApplication",
+			Handler:    _ManagerService_DeleteApplication_Handler,
+		},
+		{
+			MethodName: "ListApplications",
+			Handler:    _ManagerService_ListApplications_Handler,
+		},
+		{
+			MethodName: "AddProfile",
+			Handler:    _ManagerService_AddProfile_Handler,
+		},
+		{
+			MethodName: "GetProfileByID",
+			Handler:    _ManagerService_GetProfileByID_Handler,
+		},
+		{
+			MethodName: "DiffProfiles",
+			Handler:    _ManagerService_DiffProfiles_Handler,
+		},
+		{
+			MethodName: "DeleteProfile",
+			Handler:    _ManagerService_DeleteProfile_Handler,
+		},
+		{
+			MethodName: "BuildOpenAPISpec",
+			Handler:    _ManagerService_BuildOpenAPISpec_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
