@@ -27,7 +27,7 @@ const (
 	ManagerService_GetProfileByID_FullMethodName    = "/apim_manager.v1.ManagerService/GetProfileByID"
 	ManagerService_DiffProfiles_FullMethodName      = "/apim_manager.v1.ManagerService/DiffProfiles"
 	ManagerService_DeleteProfile_FullMethodName     = "/apim_manager.v1.ManagerService/DeleteProfile"
-	ManagerService_BuildOpenAPISpec_FullMethodName  = "/apim_manager.v1.ManagerService/BuildOpenAPISpec"
+	ManagerService_ExportOpenAPISpec_FullMethodName = "/apim_manager.v1.ManagerService/ExportOpenAPISpec"
 )
 
 // ManagerServiceClient is the client API for ManagerService service.
@@ -42,7 +42,7 @@ type ManagerServiceClient interface {
 	GetProfileByID(ctx context.Context, in *GetProfileByIDRequest, opts ...grpc.CallOption) (*GetProfileByIDResponse, error)
 	DiffProfiles(ctx context.Context, in *DiffProfilesRequest, opts ...grpc.CallOption) (*DiffProfilesResponse, error)
 	DeleteProfile(ctx context.Context, in *DeleteProfileRequest, opts ...grpc.CallOption) (*DeleteProfileResponse, error)
-	BuildOpenAPISpec(ctx context.Context, in *BuildOpenAPISpecRequest, opts ...grpc.CallOption) (*BuildOpenAPISpecResponse, error)
+	ExportOpenAPISpec(ctx context.Context, in *ExportOpenAPISpecRequest, opts ...grpc.CallOption) (*ExportOpenAPISpecResponse, error)
 }
 
 type managerServiceClient struct {
@@ -133,10 +133,10 @@ func (c *managerServiceClient) DeleteProfile(ctx context.Context, in *DeleteProf
 	return out, nil
 }
 
-func (c *managerServiceClient) BuildOpenAPISpec(ctx context.Context, in *BuildOpenAPISpecRequest, opts ...grpc.CallOption) (*BuildOpenAPISpecResponse, error) {
+func (c *managerServiceClient) ExportOpenAPISpec(ctx context.Context, in *ExportOpenAPISpecRequest, opts ...grpc.CallOption) (*ExportOpenAPISpecResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(BuildOpenAPISpecResponse)
-	err := c.cc.Invoke(ctx, ManagerService_BuildOpenAPISpec_FullMethodName, in, out, cOpts...)
+	out := new(ExportOpenAPISpecResponse)
+	err := c.cc.Invoke(ctx, ManagerService_ExportOpenAPISpec_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -155,7 +155,7 @@ type ManagerServiceServer interface {
 	GetProfileByID(context.Context, *GetProfileByIDRequest) (*GetProfileByIDResponse, error)
 	DiffProfiles(context.Context, *DiffProfilesRequest) (*DiffProfilesResponse, error)
 	DeleteProfile(context.Context, *DeleteProfileRequest) (*DeleteProfileResponse, error)
-	BuildOpenAPISpec(context.Context, *BuildOpenAPISpecRequest) (*BuildOpenAPISpecResponse, error)
+	ExportOpenAPISpec(context.Context, *ExportOpenAPISpecRequest) (*ExportOpenAPISpecResponse, error)
 	mustEmbedUnimplementedManagerServiceServer()
 }
 
@@ -190,8 +190,8 @@ func (UnimplementedManagerServiceServer) DiffProfiles(context.Context, *DiffProf
 func (UnimplementedManagerServiceServer) DeleteProfile(context.Context, *DeleteProfileRequest) (*DeleteProfileResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteProfile not implemented")
 }
-func (UnimplementedManagerServiceServer) BuildOpenAPISpec(context.Context, *BuildOpenAPISpecRequest) (*BuildOpenAPISpecResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method BuildOpenAPISpec not implemented")
+func (UnimplementedManagerServiceServer) ExportOpenAPISpec(context.Context, *ExportOpenAPISpecRequest) (*ExportOpenAPISpecResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ExportOpenAPISpec not implemented")
 }
 func (UnimplementedManagerServiceServer) mustEmbedUnimplementedManagerServiceServer() {}
 func (UnimplementedManagerServiceServer) testEmbeddedByValue()                        {}
@@ -358,20 +358,20 @@ func _ManagerService_DeleteProfile_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ManagerService_BuildOpenAPISpec_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(BuildOpenAPISpecRequest)
+func _ManagerService_ExportOpenAPISpec_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ExportOpenAPISpecRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ManagerServiceServer).BuildOpenAPISpec(ctx, in)
+		return srv.(ManagerServiceServer).ExportOpenAPISpec(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ManagerService_BuildOpenAPISpec_FullMethodName,
+		FullMethod: ManagerService_ExportOpenAPISpec_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ManagerServiceServer).BuildOpenAPISpec(ctx, req.(*BuildOpenAPISpecRequest))
+		return srv.(ManagerServiceServer).ExportOpenAPISpec(ctx, req.(*ExportOpenAPISpecRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -416,8 +416,8 @@ var ManagerService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ManagerService_DeleteProfile_Handler,
 		},
 		{
-			MethodName: "BuildOpenAPISpec",
-			Handler:    _ManagerService_BuildOpenAPISpec_Handler,
+			MethodName: "ExportOpenAPISpec",
+			Handler:    _ManagerService_ExportOpenAPISpec_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

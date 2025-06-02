@@ -96,10 +96,10 @@ rpc DeleteProfile(DeleteProfileRequest) returns (DeleteProfileResponse) {
 };
 }
 
-rpc BuildOpenAPISpec(BuildOpenAPISpecRequest)
-    returns (BuildOpenAPISpecResponse) {
+rpc ExportOpenAPISpec(ExportOpenAPISpecRequest)
+    returns (ExportOpenAPISpecResponse) {
   option (google.api.http) = {
-    post : "/api/v1/build-openapi-spec"
+    post : "/api/v1/export-openapi-spec"
     body : "*"
   };
   option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
@@ -193,11 +193,11 @@ message DiffProfilesResponse {
   repeated shared.v1.Operation removed = 2;
 }
 
-message BuildOpenAPISpecRequest {
+message ExportOpenAPISpecRequest {
   string id = 1 [
     (buf.validate.field).required = true,
     (buf.validate.field).string.uuid = true
   ];
 }
 
-message BuildOpenAPISpecResponse { string spec_json = 1; }
+message ExportOpenAPISpecResponse { string spec_json = 1; }

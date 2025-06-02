@@ -206,14 +206,14 @@
         ]
       }
     },
-    "/api/v1/build-openapi-spec": {
+    "/api/v1/export-openapi-spec": {
       "post": {
-        "operationId": "ManagerService_BuildOpenAPISpec",
+        "operationId": "ManagerService_ExportOpenAPISpec",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1BuildOpenAPISpecResponse"
+              "$ref": "#/definitions/v1ExportOpenAPISpecResponse"
             }
           },
           "default": {
@@ -229,7 +229,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/v1BuildOpenAPISpecRequest"
+              "$ref": "#/definitions/v1ExportOpenAPISpecRequest"
             }
           }
         ],
@@ -444,22 +444,6 @@
         }
       }
     },
-    "v1BuildOpenAPISpecRequest": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        }
-      }
-    },
-    "v1BuildOpenAPISpecResponse": {
-      "type": "object",
-      "properties": {
-        "specJson": {
-          "type": "string"
-        }
-      }
-    },
     "v1CreateApplicationRequest": {
       "type": "object",
       "properties": {
@@ -508,6 +492,22 @@
           "type": "string"
         },
         "to": {
+          "type": "string"
+        }
+      }
+    },
+    "v1ExportOpenAPISpecRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "v1ExportOpenAPISpecResponse": {
+      "type": "object",
+      "properties": {
+        "specJson": {
           "type": "string"
         }
       }

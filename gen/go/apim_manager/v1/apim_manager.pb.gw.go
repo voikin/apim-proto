@@ -313,27 +313,27 @@ func local_request_ManagerService_DeleteProfile_0(ctx context.Context, marshaler
 	return msg, metadata, err
 }
 
-func request_ManagerService_BuildOpenAPISpec_0(ctx context.Context, marshaler runtime.Marshaler, client ManagerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_ManagerService_ExportOpenAPISpec_0(ctx context.Context, marshaler runtime.Marshaler, client ManagerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq BuildOpenAPISpecRequest
+		protoReq ExportOpenAPISpecRequest
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	msg, err := client.BuildOpenAPISpec(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.ExportOpenAPISpec(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
-func local_request_ManagerService_BuildOpenAPISpec_0(ctx context.Context, marshaler runtime.Marshaler, server ManagerServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_ManagerService_ExportOpenAPISpec_0(ctx context.Context, marshaler runtime.Marshaler, server ManagerServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq BuildOpenAPISpecRequest
+		protoReq ExportOpenAPISpecRequest
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	msg, err := server.BuildOpenAPISpec(ctx, &protoReq)
+	msg, err := server.ExportOpenAPISpec(ctx, &protoReq)
 	return msg, metadata, err
 }
 
@@ -503,25 +503,25 @@ func RegisterManagerServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		}
 		forward_ManagerService_DeleteProfile_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_ManagerService_BuildOpenAPISpec_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ManagerService_ExportOpenAPISpec_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/apim_manager.v1.ManagerService/BuildOpenAPISpec", runtime.WithHTTPPathPattern("/api/v1/build-openapi-spec"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/apim_manager.v1.ManagerService/ExportOpenAPISpec", runtime.WithHTTPPathPattern("/api/v1/export-openapi-spec"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ManagerService_BuildOpenAPISpec_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ManagerService_ExportOpenAPISpec_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_ManagerService_BuildOpenAPISpec_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ManagerService_ExportOpenAPISpec_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 
 	return nil
@@ -699,22 +699,22 @@ func RegisterManagerServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		}
 		forward_ManagerService_DeleteProfile_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_ManagerService_BuildOpenAPISpec_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_ManagerService_ExportOpenAPISpec_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/apim_manager.v1.ManagerService/BuildOpenAPISpec", runtime.WithHTTPPathPattern("/api/v1/build-openapi-spec"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/apim_manager.v1.ManagerService/ExportOpenAPISpec", runtime.WithHTTPPathPattern("/api/v1/export-openapi-spec"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ManagerService_BuildOpenAPISpec_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ManagerService_ExportOpenAPISpec_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_ManagerService_BuildOpenAPISpec_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_ManagerService_ExportOpenAPISpec_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 	return nil
 }
@@ -728,7 +728,7 @@ var (
 	pattern_ManagerService_GetProfileByID_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "v1", "profiles", "id"}, ""))
 	pattern_ManagerService_DiffProfiles_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 2, 5}, []string{"api", "v1", "applications", "application_id", "profiles", "diff"}, ""))
 	pattern_ManagerService_DeleteProfile_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "v1", "profiles", "id"}, ""))
-	pattern_ManagerService_BuildOpenAPISpec_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "build-openapi-spec"}, ""))
+	pattern_ManagerService_ExportOpenAPISpec_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "export-openapi-spec"}, ""))
 )
 
 var (
@@ -740,5 +740,5 @@ var (
 	forward_ManagerService_GetProfileByID_0    = runtime.ForwardResponseMessage
 	forward_ManagerService_DiffProfiles_0      = runtime.ForwardResponseMessage
 	forward_ManagerService_DeleteProfile_0     = runtime.ForwardResponseMessage
-	forward_ManagerService_BuildOpenAPISpec_0  = runtime.ForwardResponseMessage
+	forward_ManagerService_ExportOpenAPISpec_0 = runtime.ForwardResponseMessage
 )
